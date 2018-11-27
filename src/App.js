@@ -6,6 +6,9 @@ import Header from "./Admin/Header/Header";
 
 import Centre from "./Admin/Centre/Centre";
 
+// redux 学习 https://segmentfault.com/a/1190000011474522
+
+
 class App extends Component {
   render() {
     return (
