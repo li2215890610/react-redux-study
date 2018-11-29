@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 
 import { addListItem } from "../../actions/add";
 
+import  "../common.css";
+
 class Header extends React.Component {
   constructor(props){
     super(props)
@@ -17,20 +19,9 @@ class Header extends React.Component {
   clearTime = null 
 
   onInputChange = (e)=>{
-
-    console.log(this.props)
-    clearTimeout( this.clearTime); 
+    clearTimeout( this.clearTime); // 避免多次 render 属于性能提升优化
     this.setState({
       value: e.target.value
-    },()=>{
-      this.clearTime = setTimeout(() => {
-        if (this.state.value) {
-          this.inputChangeDispatch({
-            value: this.state.value,
-            id: Header.newId++
-          }) 
-        }
-      }, 500)
     })
   }
 
@@ -40,21 +31,31 @@ class Header extends React.Component {
     })
   }
 
+  saveInputValue = () =>{
+    console.log(this.props)
+    this.inputChangeDispatch({
+      value: this.state.value,
+      id: Header.newId++
+    }) 
+  }
+
   render() {
     let { value} = this.state;
     return (
-      <div className="">
+      <div className="head_box">
         <input value={value} onChange={ this.onInputChange}/>
+        <button onClick={this.saveInputValue} className="head_box_save_btn">
+          保存
+        </button>
       </div>
     );
   }
+  
 }
 
 
 // connect 接受四个参数 https://www.redux.org.cn/docs/basics/ExampleTodoList.html
 // connect([mapStateToProps], [mapDispatchToProps])
-
-
 
 // mapStateToProps 这个函数来指定如何把当前 Redux store树中的state 映射到展示组件的 props 中
 

@@ -11,13 +11,17 @@ class Centre extends React.Component {
      
     }
   }
+  
+  removeListItem = (data) =>{
+    console.log(data)
+  }
 
   render() {
     let { list} = this.props;
 
     const listArray = list.map(( item, index)=>{
       return (
-        <li key={index}>{item.value}</li>
+        <li key={index} onClick={this.removeListItem.bind(this,item)}>{item.value}</li>
       )
     })
     return (
