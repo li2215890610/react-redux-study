@@ -2,7 +2,7 @@ import React from 'react';
 
 import { connect } from "react-redux";
 
-import { addListItem } from "../../actions/add";
+import { addListItem } from "../../actions/list";
 
 import  "../common.css";
 
@@ -50,7 +50,7 @@ class Header extends React.Component {
       </div>
     );
   }
-  
+
 }
 
 

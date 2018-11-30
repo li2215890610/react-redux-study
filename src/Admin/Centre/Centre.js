@@ -2,7 +2,7 @@ import React from 'react';
 
 import { connect } from "react-redux";
 
-import { addListItem } from "../../actions/add";
+import { removeListItem } from "../../actions/list";
 
 class Centre extends React.Component {
   constructor(props){
@@ -14,6 +14,9 @@ class Centre extends React.Component {
   
   removeListItem = (data) =>{
     console.log(data)
+    this.props.removeListItem({
+      ...data
+    })
   }
 
   render() {
@@ -21,9 +24,10 @@ class Centre extends React.Component {
 
     const listArray = list.map(( item, index)=>{
       return (
-        <li key={index} onClick={this.removeListItem.bind(this,item)}>{item.value}</li>
+        <li key={index}>{item.value} <button onClick={this.removeListItem.bind(this,item)}>删除</button></li>
       )
     })
+    console.log(list)
     return (
       <div style={{marginTop:'20px'}}>
          {listArray}
@@ -43,15 +47,15 @@ class Centre extends React.Component {
 
 
 // 连接 redux
-export default connect(({ addList}) =>{
+export default connect(({ list}) =>{
   
   return {
-    list: addList.list
+    list: list.list
   }
 },(dispatch)=>{
   return {
-    addListItem(payload) {
-      dispatch(addListItem(payload));
+    removeListItem(payload) {
+      dispatch(removeListItem(payload));
     },
   }
 })(Centre);
