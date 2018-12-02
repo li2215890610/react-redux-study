@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import { addListItem } from "../../actions/list";
 
-import  "../common.css";
+import "../common.css";
 
 class Header extends React.Component {
   constructor(props){
@@ -33,9 +33,14 @@ class Header extends React.Component {
 
   saveInputValue = () =>{
     console.log(this.props)
+    if (this.state.value.length > 20) {
+      alert("最多20个字符")
+      return 
+    }
     this.inputChangeDispatch({
       value: this.state.value,
-      id: Header.newId++
+      id: Header.newId++,
+      isSelect: false
     }) 
   }
 

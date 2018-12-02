@@ -1,4 +1,4 @@
-import { ADD_LIST_ITEM, REMOVE_LIST_ITEM } from "../constants/list";
+import { ADD_LIST_ITEM, REMOVE_LIST_ITEM, COMPLETE_LIST_ITEM, EMPTY_LIST } from "../constants/list";
 
 
 // 定义 dispatch 触发事件行为
@@ -15,3 +15,20 @@ export const removeListItem = (payload) =>{
     payload
   }
 }
+
+export const completeListItem = (payload) =>{
+  return {
+    type: COMPLETE_LIST_ITEM,
+    payload
+  }
+}
+
+export const emptyList = (payload) =>{
+  return {
+    type: EMPTY_LIST,
+    payload
+  }
+}
+
+
+

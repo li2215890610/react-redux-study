@@ -2,7 +2,9 @@ import React from 'react';
 
 import { connect } from "react-redux";
 
-import { removeListItem } from "../../actions/list";
+import { removeListItem, completeListItem } from "../../actions/list";
+
+import "../common.css";
 
 class Centre extends React.Component {
   constructor(props){
@@ -15,7 +17,13 @@ class Centre extends React.Component {
   removeListItem = (data) =>{
     console.log(data)
     this.props.removeListItem({
-      ...data
+      ...data,
+    })
+  }
+
+  completeListItem = (data) =>{
+    this.props.completeListItem({
+      ...data,
     })
   }
 
@@ -24,13 +32,29 @@ class Centre extends React.Component {
 
     const listArray = list.map(( item, index)=>{
       return (
-        <li key={index}>{item.value} <button onClick={this.removeListItem.bind(this,item)}>删除</button></li>
+        <li key={index} className="li">
+          <div className="li_item_box"> 
+            <div className={item.isSelect ? "li_item li_item_select":"li_item" } onClick={this.completeListItem.bind(this,item)}>
+              {item.value}
+            </div>
+            {
+              item.isSelect ?
+              "":
+              <div className="li_item_btn" >
+                <button onClick={this.removeListItem.bind(this,item)}>删除</button>
+              </div>
+            }
+          </div>
+        </li>
       )
     })
+
     console.log(list)
     return (
       <div style={{marginTop:'20px'}}>
+        <ul>
          {listArray}
+        </ul>
       </div>
     );
   }
@@ -57,5 +81,8 @@ export default connect(({ list}) =>{
     removeListItem(payload) {
       dispatch(removeListItem(payload));
     },
+    completeListItem(payload) {
+      dispatch(completeListItem(payload))
+    }
   }
 })(Centre);
