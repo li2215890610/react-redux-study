@@ -67,7 +67,7 @@ class Centre extends React.Component {
 
 // mapStateToProps 这个函数来指定如何把当前 Redux store树中的state 映射到展示组件的 props 中
 
-// mapDispatchToProps() 方法接收 dispatch() 方法并返回期望注入到展示组件的 props 中的回调方法
+// mapDispatchToProps() 方法接收 dispatch() 方法并返回期望注入到展示组件的 props 中的回调方触发action  
 
 
 // 连接 redux
